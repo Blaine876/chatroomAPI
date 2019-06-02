@@ -1023,6 +1023,11 @@
   resolved "https://registry.yarnpkg.com/@protobufjs/utf8/-/utf8-1.1.0.tgz#a777360b5b39a1a2e5106f8e858f2fd2d060c570"
   integrity sha1-p3c2C1s5oaLlEG+OhY8v0tBgxXA=
 
+"@react-native-community/async-storage@^1.4.2":
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/@react-native-community/async-storage/-/async-storage-1.4.2.tgz#b29d2fa1b294fec8526f69b852a3deda248c8d81"
+  integrity sha512-gDQENh7uPLGPKbRFI07GiUXZPhm2j17K4FT308OwAmIiOKbfO/cxy0sCWB0YzD/SLw9F3D9tLBRPJY6GG9YZLw==
+
 "@react-native-community/cli@^1.2.1":
   version "1.9.7"
   resolved "https://registry.yarnpkg.com/@react-native-community/cli/-/cli-1.9.7.tgz#1d0aad150a83f8ee06410c216b1b37e8861aa59f"
@@ -5523,6 +5528,11 @@ realpath-native@^1.1.0:
   integrity sha512-wlgPA6cCIIg9gKz0fgAPjnzh4yR/LnXovwuo9hvyGvx3h8nX4+/iLZplfUWasXpqD8BdnGnP5njOFjkUwPzvjA==
   dependencies:
     util.promisify "^1.0.0"
+
+redux-persist@^5.10.0:
+  version "5.10.0"
+  resolved "https://registry.yarnpkg.com/redux-persist/-/redux-persist-5.10.0.tgz#5d8d802c5571e55924efc1c3a9b23575283be62b"
+  integrity sha512-sSJAzNq7zka3qVHKce1hbvqf0Vf5DuTVm7dr4GtsqQVOexnrvbV47RWFiPxQ8fscnyiuWyD2O92DOxPl0tGCRg==
 
 redux-thunk@^2.3.0:
   version "2.3.0"

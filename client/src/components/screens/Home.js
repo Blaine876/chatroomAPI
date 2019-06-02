@@ -1,5 +1,12 @@
 import React, { Component } from "react";
-import { Text, View, StyleSheet, ActivityIndicator } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  ActivityIndicator,
+  FlatList,
+  StatusBar
+} from "react-native";
 import { Message } from "../../presentation";
 
 import { connect } from "react-redux";
@@ -11,19 +18,31 @@ class Home extends Component {
     this.props.loadChat();
   }
 
-  render() {
-    const { messages } = this.props;
-    const lastIndex = messages.length - 1;
+  navigateToConversation(item) {
+   // console.log("pressed");
+   // console.log(item.fromUser);
+    this.props.navigation.navigate("conversation", {
+      user: item.fromUser
+    });
+  }
 
+  render() {
     return (
       <View style={styles.container}>
+        <StatusBar barStyle="light-content" />
         {this.props.showActivityIndicator ? (
           <ActivityIndicator size="large" />
         ) : null}
-        {messages.map((message, i) => {
-          const last = i === lastIndex;
-          return <Message last={last} {...message} />;
-        })}
+        <FlatList
+          data={this.props.messages}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
+            <Message
+              {...item}
+              nav={this.navigateToConversation.bind(this, { ...item })}
+            />
+          )}
+        />
       </View>
     );
   }
@@ -35,14 +54,16 @@ const styles = StyleSheet.create({
     height: "100%",
     flex: 1,
     justifyContent: "center",
-    alignContent: "center"
+    alignContent: "center",
+    backgroundColor: "rgb(243,243,243)"
   }
 });
 
 const mapStateToProps = state => {
   return {
     messages: state.message.messages,
-    showActivityIndicator: state.message.showActivityIndicator
+    showActivityIndicator: state.message.showActivityIndicator,
+    fromUser: state.message.fromUser
   };
 };
 

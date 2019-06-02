@@ -4,9 +4,13 @@ import {
   MESSAGES_LOAD_FAIL
 } from "./types";
 
+import AsyncStorage from "@react-native-community/async-storage";
 import { db } from "../config/firebase";
+import keys from "../config/keys";
 
-export const loadChat = () => dispatch => {
+export const loadChat = () => (dispatch, getState) => {
+  const { id } = getState().auth;
+
   dispatch({ type: MESSAGES_LOAD_START });
 
   const response = [];
@@ -15,7 +19,13 @@ export const loadChat = () => dispatch => {
     .get()
     .then(snapshot => {
       snapshot.forEach(doc => {
-        response.push(doc.data());
+        response.push({
+          toUser: doc.data().toUser,
+          fromUser: doc.data().fromUser,
+          message: doc.data().message,
+          id: doc.id,
+          userId: id
+        });
       });
       dispatch({ type: MESSAGES_LOAD_SUCCESS, payload: response });
     })
